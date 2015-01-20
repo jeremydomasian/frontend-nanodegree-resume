@@ -1,16 +1,6 @@
 
 /*
 [string].replace([old],[new]);
-e.g.
-
-var name = "Jeremy R. Domasian";
-var role = "Web Developer";
-
-var formattedName = HTMLheaderName.replace("%data%", name);
-var formattedRole = HTMLheaderRole.replace("%data%", role);
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
 */
 
 var work = {
@@ -19,28 +9,28 @@ var work = {
 			"employer": "Year Up Bay Area",
 			"title": "Program Coordinator",
 			"location": "San Francisco, CA",
-			"dates": "July 2014 to Present",
+			"dates": "July 2014 - Present",
 			"description": "placeholder"
 		},
 		{
 			"employer": "Year Up Bay Area",
 			"title": "Teaching Assistant / IT Instructor",
 			"location": "San Jose, CA",
-			"dates": "February 2014 to July 2014",
+			"dates": "February 2014 - July 2014",
 			"description": "placeholder"
 		},
 		{
 			"employer": "Splunk",
 			"title": "Systems Intern",
 			"location": "San Francisco, CA",
-			"dates": "July 2013 to January 2014",
+			"dates": "July 2013 - January 2014",
 			"description": "placeholder"
 		},
 		{
 			"employer": "City College of San Francisco",
 			"title": "English Tutor",
 			"location": "San Francisco, CA",
-			"dates": "January 2008 to May 2010, January 2012 to May 2012",
+			"dates": "January 2008 - May 2010, January 2012 - May 2012",
 			"description": "placeholder"
 		}
 	]
@@ -51,16 +41,33 @@ var projects = {
 		{
 			"title": "Secrets World",
 			"dates": "July 2013",
-			"description": "A web application using the LAMP stack. Users can submit and vote on other user-submitted secrets! A whole six months before the Secrets iPhone app craze.",
-			"images": "images/secrets_world.png"
+			"description": "A web application using the LAMP stack. Users can submit secrets and vote on other user-submitted secrets! Created a whole six months before the Secrets iPhone app craze.",
+			"images": "images/gnj_fingerwag.gif"
 		}
-	]
+	],
+	"display": function() {
+	for (project in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+		$(".project-entry:last").append(formattedTitle);
+
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+		$(".project-entry:last").append(formattedDates);
+
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+		$(".project-entry:last").append(formattedDescription);
+
+		var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images);
+		$(".project-entry:last").append(formattedImage);
+		}
+	}
 }
 
 var bio = {
 	"name": "Jeremy Domasian",
 	"role": "Web Developer",
-	"welcomeMessage": "Hello, welcome to my interactive resume!",
+	"welcomeMessage": "Hello and welcome to my interactive resume!",
 	"contacts": {
 		"mobile": "(650) 815-1225",
 		"email": "j.domasian@gmail.com",
@@ -68,24 +75,27 @@ var bio = {
 		"twitter": "@jeremydomasian",
 		"location": "San Francisco, CA"
 	},
-	"skills": ["HTML", "CSS", "JavaScript", "jQuery"],
-};
+	"skills": [
+		"HTML", "CSS", "JavaScript", "jQuery"
+	],
+	"bioPic": "images/me.jpg"
+}
 
 var education = {
 	"schools": [
 		{
 			"name": "Udacity",
-			"location": "Online",
+			"location": "Mountain View, CA",
 			"degree": "Nanodegree",
 			"majors": ["Front-End Web Development"],
-			"dates": "Expected 2015"
+			"dates": 2015
 		},
 		{
 			"name": "San Francisco State University",
 			"location": "San Francisco, CA, US",
 			"degree": "BA",
 			"majors": ["English - Linguistics"],
-			"dates": "2015",
+			"dates": 2015,
 			"url": "http://www.sfsu.edu"
 		},
 		{
@@ -93,7 +103,7 @@ var education = {
 			"location": "San Francisco, CA, US",
 			"degree": "Certificate",
 			"majors": ["Computer Technician"],
-			"dates": "2014",
+			"dates": 2014,
 			"url": "http://www.yearup.org"
 		},
 		{
@@ -101,7 +111,7 @@ var education = {
 			"location": "San Francisco, CA, US",
 			"degree": "AA",
 			"majors": ["Arts and Humanities"],
-			"dates": "2009",
+			"dates": 2009,
 			"url": "https://www.ccsf.edu"
 		}
 	],
@@ -109,27 +119,116 @@ var education = {
 		{
 			"title": "JavaScript Basics",
 			"school": "Udacity",
-			"dates": "January 2015",
+			"dates": 2015,
 			"url": "https://www.udacity.com/course/ud804-nd"
 		},
 		{
 			"title": "Intro to HTML and CSS",
 			"school": "Udacity",
-			"dates": "December 2014",
+			"dates": 2014,
 			"url": "https://www.udacity.com/course/ud304-nd"
 		}
 	]
 }
 
 /*
-$("#main").append(work["position"]);
-$("#main").append(education.name);
+projects.projects.display = function() {
+	for (project in projects) {
+		$("#projects").append(HTMLprojectStart);
 
-$("#main").append(bio.name);
-$("#main").append(bio.role);
-$("#main").append(bio.phone);
-$("#main").append(bio.email);
-$("#main").append(bio.photo);
-$("#main").append(bio.welcome);
-$("#main").append(bio.skills);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects[project].title);
+		$("#projects").append(formattedTitle);
+
+		var formattedDates = HTMLprojectDates.replace("%data%", projects[project].dates);
+		$("#projects").append(formattedDates);
+
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects[project].description);
+		$("#projects").append(formattedDescription);
+
+		var formattedImage = HTMLprojectImage.replace("%data%", projects[project].images);
+		$("#projects").append(formattedImage);
+
+	}
+}
 */
+
+projects.display();
+
+var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
+var formattedRole = HTMLheaderRole.replace("%data%", bio["role"]);
+
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+	$("#skills").append(formattedSkill);
+
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+	$("#skills").append(formattedSkill);
+
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+	$("#skills").append(formattedSkill);
+
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+	$("#skills").append(formattedSkill);
+};
+
+function displayWork() {
+	for (job in work.jobs) {
+	$("#workExperience").append(HTMLworkStart);
+	
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+	$(".work-entry:last").append(formattedEmployerTitle);
+
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	$(".work-entry:last").append(formattedDates);
+
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	$(".work-entry:last").append(formattedLocation);
+
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	$(".work-entry:last").append(formattedDescription);
+	}
+}
+
+displayWork();
+
+function locationizer(work_obj) {
+	var locations = [];
+
+	for (job in work_obj.jobs) {
+		var newLocation = work_obj.jobs[job].location;
+		locations.push(newLocation);
+	}
+
+	return locations;
+}
+
+function inName(name) {
+	name = name.trim().split(' ');
+	// console.log(name);
+	name[1] = name[1].toUpperCase();
+	name[0] = name[0].slice(0,1).toUpperCase() +
+		name[0].slice(1).toLowerCase();
+
+	/*
+	var firstNameFirstLetter = name[0].toUpperCase();
+	var restOfFirstName = (name.slice(1, name.indexOf(' '))).toLowerCase()
+	var firstName = firstNameFirstLetter + restOfFirstName;
+
+	var lastName = (name.slice(name.indexOf(' ') + 1)).toUpperCase();
+	
+	name = firstName + ' ' + lastName
+	*/
+	
+	return name[0] + ' ' + name[1];
+}
+
+$('#main').append(internationalizeButton);
+
+$('#mapDiv').append(googleMap);
