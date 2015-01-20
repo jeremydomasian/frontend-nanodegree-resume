@@ -1,7 +1,49 @@
+// Bio Section
 
-/*
-[string].replace([old],[new]);
-*/
+var bio = {
+	"name": "Jeremy Domasian",
+	"role": "Web Developer",
+	"welcomeMessage": "Hello and welcome to my interactive resume!",
+	"contacts": {
+		"mobile": "(650) 815-1225",
+		"email": "j.domasian@gmail.com",
+		"github": "oldpastelsoul",
+		"twitter": "@jeremydomasian",
+		"location": "San Francisco, CA"
+	},
+	"skills": [
+		"HTML", "CSS", "JavaScript", "jQuery"
+	],
+	"bioPic": "images/me.jpg"
+}
+
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+$("#header").prepend(formattedBioPic);
+
+
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+	$("#skills").append(formattedSkill);
+
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+	$("#skills").append(formattedSkill);
+
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+	$("#skills").append(formattedSkill);
+
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+	$("#skills").append(formattedSkill);
+};
+
+
+// Work Section
 
 var work = {
 	"jobs": [
@@ -36,6 +78,28 @@ var work = {
 	]
 }
 
+function displayWork() {
+	for (job in work.jobs) {
+	$("#workExperience").append(HTMLworkStart);
+	
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+	$(".work-entry:last").append(formattedEmployerTitle);
+
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	$(".work-entry:last").append(formattedDates);
+
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	$(".work-entry:last").append(formattedLocation);
+
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	$(".work-entry:last").append(formattedDescription);
+	}
+}
+
+// Projects section
+
 var projects = {
 	"projects": [
 		{
@@ -64,22 +128,8 @@ var projects = {
 	}
 }
 
-var bio = {
-	"name": "Jeremy Domasian",
-	"role": "Web Developer",
-	"welcomeMessage": "Hello and welcome to my interactive resume!",
-	"contacts": {
-		"mobile": "(650) 815-1225",
-		"email": "j.domasian@gmail.com",
-		"github": "oldpastelsoul",
-		"twitter": "@jeremydomasian",
-		"location": "San Francisco, CA"
-	},
-	"skills": [
-		"HTML", "CSS", "JavaScript", "jQuery"
-	],
-	"bioPic": "images/me.jpg"
-}
+
+// Education section
 
 var education = {
 	"schools": [
@@ -131,72 +181,12 @@ var education = {
 	]
 }
 
-/*
-projects.projects.display = function() {
-	for (project in projects) {
-		$("#projects").append(HTMLprojectStart);
-
-		var formattedTitle = HTMLprojectTitle.replace("%data%", projects[project].title);
-		$("#projects").append(formattedTitle);
-
-		var formattedDates = HTMLprojectDates.replace("%data%", projects[project].dates);
-		$("#projects").append(formattedDates);
-
-		var formattedDescription = HTMLprojectDescription.replace("%data%", projects[project].description);
-		$("#projects").append(formattedDescription);
-
-		var formattedImage = HTMLprojectImage.replace("%data%", projects[project].images);
-		$("#projects").append(formattedImage);
-
-	}
-}
-*/
+// Function calls
 
 projects.display();
-
-var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
-var formattedRole = HTMLheaderRole.replace("%data%", bio["role"]);
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	$("#skills").append(formattedSkill);
-};
-
-function displayWork() {
-	for (job in work.jobs) {
-	$("#workExperience").append(HTMLworkStart);
-	
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-	var formattedEmployerTitle = formattedEmployer + formattedTitle;
-	$(".work-entry:last").append(formattedEmployerTitle);
-
-	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-	$(".work-entry:last").append(formattedDates);
-
-	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-	$(".work-entry:last").append(formattedLocation);
-
-	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-	$(".work-entry:last").append(formattedDescription);
-	}
-}
-
 displayWork();
+
+// Other function definitions
 
 function locationizer(work_obj) {
 	var locations = [];
@@ -230,5 +220,4 @@ function inName(name) {
 }
 
 $('#main').append(internationalizeButton);
-
 $('#mapDiv').append(googleMap);
