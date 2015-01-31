@@ -7,8 +7,9 @@ var bio = {
 	"contacts": {
 		"mobile": "(650) 815-1225",
 		"email": "j.domasian@gmail.com",
-		"github": "oldpastelsoul",
 		"twitter": "@jeremydomasian",
+		"github": "oldpastelsoul",
+		"blog": "http://jeremy.cool",
 		"location": "San Francisco, CA"
 	},
 	"skills": [
@@ -20,14 +21,27 @@ var bio = {
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
+var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
 
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 $("#header").prepend(formattedBioPic);
+$("#topContacts").append(formattedEmail);
+$("#topContacts").append(formattedTwitter);
+$("#topContacts").append(formattedGithub);
+$("#topContacts").append(formattedBlog);
+$("#topContacts").append(formattedLocation);
+
 
 
 if (bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
+
 
 	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
 	$("#skills").append(formattedSkill);
@@ -70,7 +84,7 @@ var work = {
 		},
 		{
 			"employer": "City College of San Francisco",
-			"title": "English Tutor",
+			"title": "Writing Tutor",
 			"location": "San Francisco, CA",
 			"dates": "January 2008 - May 2010, January 2012 - May 2012",
 			"description": "placeholder"
